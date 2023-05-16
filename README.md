@@ -65,7 +65,7 @@ Update parking ticket.
 | currency | string | No | The currency used for the payment. Default is "SEK". |
 | lat | float | No | The latitude of the location where the vehicle parked. |
 | lon | float | No | The longitude of the location where the vehicle parked. |
-| public_area_code | string | No | The public area code where the vehicle parked. |
+| public_zone_code | string | No | The public area code where the vehicle parked. |
 
 ### Response
 
@@ -97,7 +97,7 @@ The response body contains the details of the parking ticket.
 | currency | string | The currency used for the payment. |
 | lat | Float | Coordinare |
 | lon | Float | Coordinate |
-| public_area_code | string | The public area code where the vehicle parked. |
+| public_zone_code | string | The public area code where the vehicle parked. |
 
 ---
 
@@ -115,5 +115,5 @@ The response body contains the details of the zone
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| public_area_code | string | The public area code where the vehicle parked. |
+| public_zone_code | string | The public area code where the vehicle parked. |
 | title | string | Title of the zone |
