@@ -48,7 +48,7 @@ See ticket response below
 
 ### Update **Ticket**
 
-Endpoint: **`/ticket/{orderRef}`**
+Endpoint: **`/ticket/{order_reference}`**
 
 HTTP Method: **`PATCH`**
 
@@ -75,7 +75,7 @@ See ticket response below
 
 ### Get **Ticket**
 
-Endpoint: **`/ticket/{orderRef}`**
+Endpoint: **`/ticket/{order_reference}`**
 
 HTTP Method: **`GET`**
 
