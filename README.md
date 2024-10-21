@@ -1,9 +1,9 @@
 # API Documentation: ePark Hub
 ePARK documentation on how to communicate with our hub
 
-# Version 1.2.2
+# Version 1.2.3
 
-> *Last updated: 2023-10-19*
+> *Last updated: 2024-10-21*
 > 
 
 The ePark HUB Service API allows users to create, update and retrieve parking tickets through HTTP requests. All requests are sent to the base URL: **[https://hub.eparkera.se](https://hub.eparkera.se/)**.
@@ -48,6 +48,41 @@ Create a new parking ticket.
 
 See ticket response below
 
+### Error Responses
+
+**`401 Unauthorized`**
+
+```
+{
+    "message": "Unauthenticated."
+}
+```
+
+**`404 Not Found`**
+
+```
+{
+    "message": "Public zone code not found.",
+    "errors": {
+        "public_zone_code": [
+            "Make sure you have access to this public zone code."
+        ]
+    }
+}
+```
+
+**`422 Unprocessable Content`**
+
+```
+{
+    "message": "Validation failed.",
+    "errors": {
+        "order_reference": [
+            "The order reference has already been taken."
+        ]
+    }
+}
+```
 ---
 
 ### Update **Ticket**
@@ -74,6 +109,42 @@ Update parking ticket.
 ### Response
 
 See ticket response below
+
+### Error Responses
+
+**`401 Unauthorized`**
+
+```
+{
+    "message": "Unauthenticated."
+}
+```
+
+**`404 Not Found`**
+
+```
+{
+    "message": "Session not found.",
+    "errors": {
+        "session": [
+            "Make sure you have access to this session."
+        ]
+    }
+}
+```
+
+**`422 Unprocessable Content`**
+
+```
+{
+    "message": "Validation failed.",
+    "errors": {
+        "ends_at": [
+            "The ends at must be a date after starts at."
+        ]
+    }
+}
+```
 
 ---
 
@@ -102,6 +173,29 @@ The response body contains the details of the parking ticket.
 | lat | Float | Coordinare |
 | lon | Float | Coordinate |
 | public_zone_code | string | The public area code where the vehicle parked. |
+
+### Error Responses
+
+**`401 Unauthorized`**
+
+```
+{
+    "message": "Unauthenticated."
+}
+```
+
+**`404 Not Found`**
+
+```
+{
+    "message": "Session not found.",
+    "errors": {
+        "session": [
+            "Make sure you have access to this session."
+        ]
+    }
+}
+```
 
 ---
 
