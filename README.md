@@ -1,9 +1,9 @@
 # API Documentation: ePark Hub
 ePARK documentation on how to communicate with our hub
 
-# Version 1.2.3
+# Version 1.3.0
 
-> *Last updated: 2024-10-21*
+> *Last updated: 2024-10-29*
 > 
 
 The ePark HUB Service API allows users to create, update and retrieve parking tickets through HTTP requests. All requests are sent to the base URL: **[https://hub.eparkera.se](https://hub.eparkera.se/)**.
@@ -92,6 +92,8 @@ Endpoint: **`/ticket/{order_reference}`**
 HTTP Method: **`PATCH`**
 
 Update parking ticket.
+
+### Request Parameters
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -215,3 +217,129 @@ The response body contains the details of the zone
 | --- | --- | --- |
 | public_zone_code | string | The public area code where the vehicle parked. |
 | title | string | Title of the zone |
+
+---
+
+### Search Free Time Used
+
+Endpoint: **`/free-time/{licensePlateNumber}/{publicZoneCode}`**
+
+HTTP Method: **`GET`**
+
+Search free time used for this license plate on this zone.
+
+### Request Parameters
+
+| Parameter          | Type            | Required | Description |
+|--------------------|-----------------| --- | --- |
+| licensePlateNumber | string, min:2 max:255 | Yes | The license plate number of the vehicle parked. |
+| publicZoneCode     | string          | Yes | The public area code where the vehicle parked. |
+
+### Response
+
+The response body contains the free parking time used for the current day.
+
+| Parameter | Type   | Description                                        |
+| --- |--------|----------------------------------------------------|
+| license_plate_number | string | The license plate number of the vehicle parked.    |
+| public_zone_code | string | The public area code where the vehicle parked.     |
+| free_time_used | int    | The amount of free time parked today, in seconds. |
+
+### Error Responses
+
+**`401 Unauthorized`**
+
+```
+{
+    "message": "Unauthenticated."
+}
+```
+
+**`404 Not Found`**
+
+```
+{
+    "message": "Public zone code not found.",
+    "errors": {
+        "public_zone_code": [
+            "Make sure you have access to this public zone code."
+        ]
+    }
+}
+```
+
+**`422 Unprocessable Content`**
+
+```
+{
+    "message": "Validation failed.",
+    "errors": {
+        "license_plate_number": [
+            "License plate number must be at least 2 characters."
+        ]
+    }
+}
+```
+
+---
+
+### Search Max Time Used
+
+Endpoint: **`/max-time/{licensePlateNumber}/{publicZoneCode}`**
+
+HTTP Method: **`GET`**
+
+Search max time used for this license plate on this zone.
+
+### Request Parameters
+
+| Parameter          | Type            | Required | Description |
+|--------------------|-----------------| --- | --- |
+| licensePlateNumber | string, min:2 max:255 | Yes | The license plate number of the vehicle parked. |
+| publicZoneCode     | string          | Yes | The public area code where the vehicle parked. |
+
+### Response
+
+The response body contains the max parking time used for the current day.
+
+| Parameter            | Type   | Description                                   |
+|----------------------|--------|-----------------------------------------------|
+| license_plate_number | string | The license plate number of the vehicle parked. |
+| public_zone_code     | string | The public area code where the vehicle parked. |
+| max_time_used        | int    | The amount of minutes parked.       |
+
+### Error Responses
+
+**`401 Unauthorized`**
+
+```
+{
+    "message": "Unauthenticated."
+}
+```
+
+**`404 Not Found`**
+
+```
+{
+    "message": "Public zone code not found.",
+    "errors": {
+        "public_zone_code": [
+            "Make sure you have access to this public zone code."
+        ]
+    }
+}
+```
+
+**`422 Unprocessable Content`**
+
+```
+{
+    "message": "Validation failed.",
+    "errors": {
+        "license_plate_number": [
+            "License plate number must be at least 2 characters."
+        ]
+    }
+}
+```
