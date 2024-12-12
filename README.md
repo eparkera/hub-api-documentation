@@ -1,18 +1,18 @@
 # API Documentation: ePark Hub
 ePARK documentation on how to communicate with our hub
 
-# Version 1.3.0
+# Version 1.3.1
 
-> *Last updated: 2024-10-29*
+> *Last updated: 2024-12-12*
 > 
 
 The ePark HUB Service API allows users to create, update and retrieve parking tickets through HTTP requests. All requests are sent to the base URL: **[https://hub.eparkera.se](https://hub.eparkera.se/)**.
 
-Sandbox base URL: **[https://sandbox.hub.eparkera.se](https://sandbox.hub.eparkera.se/)**.
+Sandbox base URL: **[https://sandbox-hub.eparkera.se](https://sandbox-hub.eparkera.se/)**.
 
 > *Tickets TTL is 5 minutes in sandbox environment and logs are available for 30 days*
 
-**Authentication**: Barer Token
+**Authentication**: Bearer Token
 
 **Response:** JSON
 
