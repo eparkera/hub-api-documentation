@@ -1,9 +1,9 @@
 # API Documentation: ePark Hub
 ePARK documentation on how to communicate with our hub
 
-# Version 1.3.1
+# Version 1.3.2
 
-> *Last updated: 2024-12-12*
+> *Last updated: 2024-12-13*
 > 
 
 The ePark HUB Service API allows users to create, update and retrieve parking tickets through HTTP requests. All requests are sent to the base URL: **[https://hub.eparkera.se](https://hub.eparkera.se/)**.
@@ -30,19 +30,20 @@ Create a new parking ticket.
 
 ### Request Parameters
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| order_reference | string, min:10 max:255 | Yes | A unique identifier for the parking ticket. |
-| starts_at | UTC Date (Y-m-dTH:i:s+00:00) | Yes | The starting time of the parking ticket. Iso8601String |
-| ends_at | UTC Date (Y-m-dTH:i:s+00:00) | Yes | The ending time of the parking ticket. Iso8601String |
-| cancelled_at | UTC Date (Y-m-dTH:i:s+00:00) | No | The time the parking ticket was ended. Iso8601String |
-| license_plate_number | string | Yes | The license plate number of the vehicle parked. |
-| price | int | No | The price of the parking ticket in cents. |
-| price_excl_vat | bool | No | Whether the price is excluding VAT. Default is false. |
-| currency | string | No | The currency used for the payment. Default is "SEK". |
-| lat | float | No | The latitude of the location where the vehicle parked. |
-| lon | float | No | The longitude of the location where the vehicle parked. |
-| public_zone_code | string | No | The public area code where the vehicle parked. |
+| Parameter            | Type                         | Required | Description                                                         |
+|----------------------|------------------------------|----------|---------------------------------------------------------------------|
+| order_reference      | string, min:10 max:255       | Yes      | A unique identifier for the parking ticket.                         |
+| starts_at            | UTC Date (Y-m-dTH:i:s+00:00) | Yes      | The starting time of the parking ticket. Iso8601String              |
+| ends_at              | UTC Date (Y-m-dTH:i:s+00:00) | Yes      | The ending time of the parking ticket. Iso8601String                |
+| cancelled_at         | UTC Date (Y-m-dTH:i:s+00:00) | No       | The time the parking ticket was ended. Iso8601String                |
+| license_plate_number | string                       | Yes      | The license plate number of the vehicle parked.                     |
+| price                | int                          | No       | The price of the parking ticket in cents.                           |
+| price_excl_vat       | bool                         | No       | Whether the price is excluding VAT. Default is false.               |
+| vat                  | float, min:0.0 max:100.0     | No       | Required if price_excl_vat is set to true, the vat rate to be used. |
+| currency             | string                       | No       | The currency used for the payment. Default is "SEK".                |
+| lat                  | float                        | No       | The latitude of the location where the vehicle parked.              |
+| lon                  | float                        | No       | The longitude of the location where the vehicle parked.             |
+| public_zone_code     | string                       | No       | The public area code where the vehicle parked.                      |
 
 ### Response
 
@@ -95,18 +96,19 @@ Update parking ticket.
 
 ### Request Parameters
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| starts_at | UTC Date (Y-m-dTH:i:s+00:00) | No | The starting time of the parking ticket. Iso8601String |
-| ends_at | UTC Date (Y-m-dTH:i:s+00:00) | No | The ending time of the parking ticket. Iso8601String |
-| cancelled_at | UTC Date (Y-m-dTH:i:s+00:00) | No | The time the parking ticket was ended. Iso8601String |
-| license_plate_number | string | No | The license plate number of the vehicle parked. |
-| price | int | No | The price of the parking ticket in cents. |
-| price_excl_vat | bool | No | Whether the price is excluding VAT. Default is false. |
-| currency | string | No | The currency used for the payment. Default is "SEK". |
-| lat | float | No | The latitude of the location where the vehicle parked. |
-| lon | float | No | The longitude of the location where the vehicle parked. |
-| public_zone_code | string | No | The public area code where the vehicle parked. |
+| Parameter            | Type                         | Required | Description                                                         |
+|----------------------|------------------------------|----------|---------------------------------------------------------------------|
+| starts_at            | UTC Date (Y-m-dTH:i:s+00:00) | No       | The starting time of the parking ticket. Iso8601String              |
+| ends_at              | UTC Date (Y-m-dTH:i:s+00:00) | No       | The ending time of the parking ticket. Iso8601String                |
+| cancelled_at         | UTC Date (Y-m-dTH:i:s+00:00) | No       | The time the parking ticket was ended. Iso8601String                |
+| license_plate_number | string                       | No       | The license plate number of the vehicle parked.                     |
+| price                | int                          | No       | The price of the parking ticket in cents.                           |
+| price_excl_vat       | bool                         | No       | Whether the price is excluding VAT. Default is false.               |
+| vat                  | float, min:0.0 max:100.0     | No       | Required if price_excl_vat is set to true, the vat rate to be used. |
+| currency             | string                       | No       | The currency used for the payment. Default is "SEK".                |
+| lat                  | float                        | No       | The latitude of the location where the vehicle parked.              |
+| lon                  | float                        | No       | The longitude of the location where the vehicle parked.             |
+| public_zone_code     | string                       | No       | The public area code where the vehicle parked.                      |
 
 ### Response
 
